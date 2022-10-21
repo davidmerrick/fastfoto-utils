@@ -12,21 +12,31 @@ import re
 
 def main():
     for line in sys.stdin:
-        imageFile = Path(line.rstrip())
+        filePath = line.rstrip()
+        imageFile = Path(filePath)
         if not imageFile.is_file():
             print(f"Not a file: {line}")
             sys.exit(1)
 
         fileName = imageFile.name
         year = parseYear(fileName)
-        print(year)
+        burnExifDate(filePath)
 
+def parseDate(fileName):
+    year = parseYear(fileName)
+    month = parseMonth(fileName)
 
 def parseYear(fileName):
     return re.search(r"^\d\d\d\d", fileName).group()
 
 def parseMonth(fileName):
     return re.search("^\d\d\d\d", fileName).group()
+
+# Bail if image already has date
+# Todo: Add a "--force" flag to this script
+def burnExifDate(filePath):
+    img = Image(filePath)
+    print(sorted(img.list_all())
 
 if __name__ == '__main__':
     main()
