@@ -14,7 +14,7 @@ def main():
         imageFile = Path(filePath)
         if not imageFile.is_file():
             print(f"Not a file: {filePath}")
-            sys.exit(1)
+            return
 
         fileName = imageFile.name
         burnExifDate(filePath)
@@ -25,7 +25,7 @@ def burnExifDate(filePath):
     img = Image(filePath)
     if img.get("datetime_original"):
         print("Image already contains date. Bailing.")
-        sys.exit(0)
+        return
     digitizedDate = img.get("datetime_digitized")
     img.datetime_original = digitizedDate
     with open(filePath, 'wb') as new_image_file:
