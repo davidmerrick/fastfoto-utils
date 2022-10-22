@@ -11,11 +11,9 @@ pip3 install -r requirements.txt
 Use these just like a standard UNIX shell script
 
 ```shell
-# Burn EXIF date onto enhanced photos
+# Burn the "datetime_original" exif tag into the image
+ls -d ~/Pictures/FastFoto/1999*/*.jpg | ./bin/exifDate.py
 
-# Copy enhanced photos to temp
-mkdir /tmp/enhanced
-cp ~/Pictures/FastFoto/2018*/*_a.jpg /tmp/enhanced
-
-ls -d /tmp/enhanced/* | ./bin/exifDate.py
+# Process FastFoto directory
+./bin/processFolders.py
 ```
