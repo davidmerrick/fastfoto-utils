@@ -17,3 +17,16 @@ ls -d ~/Pictures/FastFoto/1999*/*.jpg | ./bin/exifDate.py
 # Process FastFoto directory
 ./bin/processFolders.py
 ```
+
+# ExifTool
+
+[ExifTool](https://exiftool.org/) is also super handy for this stuff.
+
+```shell
+brew install exiftool
+```
+
+Some examples:
+```shell
+exiftool -datetimeoriginal="1994:08:01 00:00:00" ./photo.jpg
+```
